@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.conf.urls.static import static
+from . import settings
 from . import views
 
 urlpatterns = [
@@ -26,4 +28,4 @@ urlpatterns = [
     url(r"^accounts/", include("django.contrib.auth.urls")),
     url(r"^posts/", include("posts.urls", namespace="posts")),
     url(r"^groups/", include("groups.urls", namespace="groups")),
-]
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 
